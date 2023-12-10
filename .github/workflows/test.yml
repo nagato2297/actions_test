@@ -1,0 +1,25 @@
+name: Update Test Text File
+
+on:
+  push:
+    branches:
+      - main  # テストを実行するブランチを指定
+
+jobs:
+  update-test-text:
+    runs-on: ubuntu-latest  # 使用するランナーのイメージを指定
+
+    steps:
+    - name: Checkout Repository  # リポジトリをチェックアウト
+      uses: actions/checkout@v2
+
+    - name: Update Test Text File  # テキストファイルを更新
+      run: |
+        echo "add push" >> test.txt
+    - name: Commit and Push Changes  # 変更をコミットしてプッシュ
+      run: |
+        git config user.name "nagato2297"
+        git config user.email "nagato2297@gmail.com"
+        git add Scripts/test.txt
+        git commit -m "Add 'add push' to test.txt"
+        git push
